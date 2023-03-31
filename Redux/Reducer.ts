@@ -1,4 +1,4 @@
-import { IAction } from "./AllType";
+import { IAction, IInitialState } from "./AllType";
 import { InitialState } from "./InitialState";
 import { GET_ALL_BLOG } from "./actionType";
 

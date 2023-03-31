@@ -10,36 +10,38 @@ const Post = ({ blog }: props) => {
     blog;
   return (
     <Fragment>
-      <Link href="/component/PostDetails">
-        <div className="lws-card">
-          <p>
+      <div className="lws-card">
+        <p>
+          <Link href="/component/PostDetails">
             <img src={image} className="lws-card-image" alt="" />
-          </p>
-          <div className="p-4">
-            <div className="lws-card-header">
-              <p className="lws-publishedDate">{createdAt}</p>
-              <p className="lws-likeCount">
-                <i className="fa-regular fa-thumbs-up"></i>
-                {likes}
-              </p>
-            </div>
+          </Link>
+        </p>
+        <div className="p-4">
+          <div className="lws-card-header">
+            <p className="lws-publishedDate">{createdAt}</p>
+            <p className="lws-likeCount">
+              <i className="fa-regular fa-thumbs-up"></i>
+              {likes}
+            </p>
+          </div>
+          <Link href="/component/PostDetails">
             <p className="lws-postTitle"> {title} </p>
-            <div className="lws-tags">
-              {tags.map((tag) => {
-                return <span>#{tag},</span>;
-              })}
-              {/* <span>#python,</span> <span>#tech,</span> <span>#git</span> */}
-            </div>
-            <div className="flex gap-2 mt-4">
-              {isSaved ? (
-                <span className="lws-badge"> Saved </span>
-              ) : (
-                <span className="lws-badge"> Save </span>
-              )}
-            </div>
+          </Link>
+          <div className="lws-tags">
+            {tags.map((tag) => {
+              return <span>#{tag},</span>;
+            })}
+            {/* <span>#python,</span> <span>#tech,</span> <span>#git</span> */}
+          </div>
+          <div className="flex gap-2 mt-4">
+            {isSaved ? (
+              <span className="lws-badge"> Saved </span>
+            ) : (
+              <span className="lws-badge"> Save </span>
+            )}
           </div>
         </div>
-      </Link>
+      </div>
     </Fragment>
   );
 };

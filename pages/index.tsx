@@ -26,7 +26,6 @@ export default function Home() {
       </Head>
       <main>
         <section className="wrapper">
-          <Sidebar />
           <PostList />
         </section>
       </main>
