@@ -1,1 +1,1 @@
-export const GET_ALL_BLOG = "blog/getAllBlog";
+export const GET_ALL_BLOG = "GET_ALL_BLOG";
