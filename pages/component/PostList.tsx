@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Post from "./Post";
-import { getAllBlogThunk } from "@/Redux/ThunkAction";
+import { getAllBlogThunk, likedFunction } from "@/Redux/ThunkAction";
 import { useAppDispatch, useAppSelector } from "@/Redux/store";
 import { IInitialState } from "@/Redux/AllType";
 
@@ -54,6 +54,16 @@ const PostList = () => {
     setShowDefault(false);
   };
 
+  const onLikedHandle = (id: number, blog: IInitialState) => {
+    console.log("From handle", blog.likes);
+    blog.likes += 1;
+    console.log("From handle", blog.likes);
+
+    dispatch<any>(likedFunction(id, blog));
+  };
+  const onSavedHandle = (id: number, blog: IInitialState) => {
+    console.log(id);
+  };
   return (
     <Fragment>
       <aside>
@@ -109,28 +119,52 @@ const PostList = () => {
           !showSaved &&
           !showNewest &&
           allBlog.map((blog: IInitialState) => {
-            return <Post blog={blog} />;
+            return (
+              <Post
+                blog={blog}
+                onLikedHandle={onLikedHandle}
+                onSavedHandle={onSavedHandle}
+              />
+            );
           })}
         {showMostLiked &&
           !showDefault &&
           !showSaved &&
           !showNewest &&
           mostLiked.map((blog: IInitialState) => {
-            return <Post blog={blog} />;
+            return (
+              <Post
+                blog={blog}
+                onLikedHandle={onLikedHandle}
+                onSavedHandle={onSavedHandle}
+              />
+            );
           })}
         {showSaved &&
           !showDefault &&
           !showMostLiked &&
           !showNewest &&
           saved.map((blog: IInitialState) => {
-            return <Post blog={blog} />;
+            return (
+              <Post
+                blog={blog}
+                onLikedHandle={onLikedHandle}
+                onSavedHandle={onSavedHandle}
+              />
+            );
           })}
         {showNewest &&
           !showDefault &&
           !showMostLiked &&
           !showSaved &&
           newest.map((blog: IInitialState) => {
-            return <Post blog={blog} />;
+            return (
+              <Post
+                blog={blog}
+                onLikedHandle={onLikedHandle}
+                onSavedHandle={onSavedHandle}
+              />
+            );
           })}
       </div>
     </Fragment>

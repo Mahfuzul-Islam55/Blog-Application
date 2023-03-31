@@ -1,12 +1,24 @@
 import { IAction, IInitialState } from "./AllType";
 import { InitialState } from "./InitialState";
-import { GET_ALL_BLOG } from "./actionType";
+import { GET_ALL_BLOG, LIKED_BLOG } from "./actionType";
 
 export const BlogReducer = (state = InitialState, action: IAction) => {
   const { type, payload } = action;
   switch (type) {
     case GET_ALL_BLOG:
       return payload.allData;
+    case LIKED_BLOG:
+      return state.map((blog: IInitialState) => {
+        if (blog.id === payload.id) {
+          return {
+            ...blog,
+            likes: blog.likes,
+          };
+        }
+        return {
+          ...blog,
+        };
+      });
     default:
       return state;
   }

@@ -4,8 +4,10 @@ import React, { Fragment } from "react";
 
 type props = {
   blog: IInitialState;
+  onLikedHandle: (param: number, blog: IInitialState) => void;
+  onSavedHandle: (param: number, blog: IInitialState) => void;
 };
-const Post = ({ blog }: props) => {
+const Post = ({ blog, onLikedHandle, onSavedHandle }: props) => {
   const { id, title, description, image, tags, likes, isSaved, createdAt } =
     blog;
   return (
@@ -19,7 +21,11 @@ const Post = ({ blog }: props) => {
         <div className="p-4">
           <div className="lws-card-header">
             <p className="lws-publishedDate">{createdAt}</p>
-            <p className="lws-likeCount">
+            <p
+              className="lws-likeCount"
+              style={{ cursor: "pointer" }}
+              onClick={() => onLikedHandle(id, blog)}
+            >
               <i className="fa-regular fa-thumbs-up"></i>
               {likes}
             </p>
@@ -37,7 +43,14 @@ const Post = ({ blog }: props) => {
             {isSaved ? (
               <span className="lws-badge"> Saved </span>
             ) : (
-              <span className="lws-badge"> Save </span>
+              <span
+                className="lws-badge"
+                onClick={() => onSavedHandle(id, blog)}
+                style={{ cursor: "pointer" }}
+              >
+                {" "}
+                Save{" "}
+              </span>
             )}
           </div>
         </div>
