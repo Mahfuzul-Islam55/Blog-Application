@@ -25,7 +25,6 @@ const Sidebar = () => {
                   type="radio"
                   name="filter"
                   id="lws-all"
-                  checked
                   className="radio"
                 />
                 <label htmlFor="lws-all">All</label>

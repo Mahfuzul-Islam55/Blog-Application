@@ -8,13 +8,9 @@ const PostDetails = () => {
     <Fragment>
       <Link href="/">
         <div className="container mt-8">
-          <a
-            href="index.html"
-            className="inline-block text-gray-600 home-btn"
-            id="lws-goHome"
-          >
+          <p className="inline-block text-gray-600 home-btn" id="lws-goHome">
             <i className="mr-2 fa-solid fa-house"></i>Go Home
-          </a>
+          </p>
         </div>
       </Link>
 

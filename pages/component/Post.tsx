@@ -6,9 +6,9 @@ const Post = () => {
     <Fragment>
       <Link href="/component/PostDetails">
         <div className="lws-card">
-          <a href="post.html">
+          <p>
             <img src="/git.webp" className="lws-card-image" alt="" />
-          </a>
+          </p>
           <div className="p-4">
             <div className="lws-card-header">
               <p className="lws-publishedDate">2023-05-01</p>
@@ -16,10 +16,7 @@ const Post = () => {
                 <i className="fa-regular fa-thumbs-up"></i>100
               </p>
             </div>
-            <a href="post.html" className="lws-postTitle">
-              {" "}
-              Top Github Alternatives{" "}
-            </a>
+            <p className="lws-postTitle"> Top Github Alternatives </p>
             <div className="lws-tags">
               <span>#python,</span> <span>#tech,</span> <span>#git</span>
             </div>
