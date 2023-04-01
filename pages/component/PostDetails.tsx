@@ -15,8 +15,8 @@ const PostDetails = () => {
       </Link>
 
       <section className="post-page-container">
-        <Description />
-        <RelatedPost />
+        {/* <Description /> */}
+        {/* <RelatedPost /> */}
       </section>
     </Fragment>
   );

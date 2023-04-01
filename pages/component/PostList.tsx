@@ -30,6 +30,8 @@ const PostList = () => {
     .slice()
     .sort((a: IInitialState, b: IInitialState) => a.createdAt < b.createdAt);
 
+  const withTag = allBlog.filter((a: IInitialState) => a.tags);
+
   const mostLikedHandler = () => {
     setShowMostLiked(true);
     setShowSaved(false);
@@ -62,10 +64,12 @@ const PostList = () => {
     blog.likes += 1;
     dispatch<any>(likedFunction(id, blog));
   };
+
   const onSavedHandle = (id: number, blog: IInitialState) => {
     blog.isSaved = true;
     dispatch<any>(savedFunction(id, blog));
   };
+
   return (
     <Fragment>
       <aside>

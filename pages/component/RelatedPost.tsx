@@ -1,43 +1,36 @@
+import { IInitialState } from "@/Redux/AllType";
 import React, { Fragment } from "react";
 
-const RelatedPost = () => {
+interface props {
+  related: IInitialState;
+}
+const RelatedPost = ({ related }: props) => {
+  const { image, title, tags, createdAt } = related;
+  console.log("Related: ", related);
   return (
     <Fragment>
       <aside>
-        <h4 className="mb-4 text-xl font-medium" id="lws-relatedPosts">
+        {/* <h4 className="mb-4 text-xl font-medium" id="lws-relatedPosts">
           Related Posts
-        </h4>
-        <div className="space-y-4 related-post-container">
-          <div className="card">
-            <a href="/">
-              <img src="/git.webp" className="card-image" alt="" />
+        </h4> */}
+        {/* <div className="space-y-4 related-post-container"> */}
+        <div className="card">
+          <a href="/">
+            <img src={image} className="card-image" alt="" />
+          </a>
+          <div className="p-4">
+            <a href="/" className="text-lg post-title lws-RelatedPostTitle">
+              {title}
             </a>
-            <div className="p-4">
-              <a href="/" className="text-lg post-title lws-RelatedPostTitle">
-                Top Github Alternatives
-              </a>
-              <div className="mb-0 tags">
-                <span>#python,</span> <span>#tech,</span> <span>#git</span>
-              </div>
-              <p>2010-03-27</p>
+            <div className="mb-0 tags">
+              {tags.map((tag) => {
+                return <span>#{tag}, </span>;
+              })}
             </div>
-          </div>
-
-          <div className="card">
-            <a href="/">
-              <img src="/ai.jpg" className="card-image" alt="" />
-            </a>
-            <div className="p-4">
-              <a href="/" className="text-lg post-title lws-RelatedPostTitle">
-                The future of Artificial Inteligence
-              </a>
-              <div className="mb-0 tags">
-                <span>#python,</span> <span>#tech,</span> <span>#git</span>
-              </div>
-              <p>2020-07-15</p>
-            </div>
+            <p>{createdAt}</p>
           </div>
         </div>
+        {/* </div> */}
       </aside>
     </Fragment>
   );

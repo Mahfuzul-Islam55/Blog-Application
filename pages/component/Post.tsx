@@ -14,7 +14,7 @@ const Post = ({ blog, onLikedHandle, onSavedHandle }: props) => {
     <Fragment>
       <div className="lws-card">
         <p>
-          <Link href="/component/PostDetails">
+          <Link href={`/component/PostDetails/${id}`}>
             <img src={image} className="lws-card-image" alt="" />
           </Link>
         </p>
@@ -30,14 +30,13 @@ const Post = ({ blog, onLikedHandle, onSavedHandle }: props) => {
               {likes}
             </p>
           </div>
-          <Link href="/component/PostDetails">
+          <Link href={`/component/PostDetails/${id}`}>
             <p className="lws-postTitle"> {title} </p>
           </Link>
           <div className="lws-tags">
             {tags.map((tag) => {
               return <span>#{tag},</span>;
             })}
-            {/* <span>#python,</span> <span>#tech,</span> <span>#git</span> */}
           </div>
           <div className="flex gap-2 mt-4">
             {isSaved ? (

@@ -1,41 +1,67 @@
+import { IInitialState } from "@/Redux/AllType";
+import { likedFunction, savedFunction } from "@/Redux/ThunkAction";
+import { useAppDispatch } from "@/Redux/store";
 import React, { Fragment } from "react";
 
-const Description = () => {
+interface props {
+  blog: IInitialState;
+}
+const Description = ({ blog }: props) => {
+  const dispatch = useAppDispatch();
+
+  const saveHandle = (id: number, blog: IInitialState) => {
+    blog.isSaved = true;
+    dispatch<any>(savedFunction(id, blog));
+  };
+
+  const likeHandle = (id: number, blog: IInitialState) => {
+    blog.likes += 1;
+    dispatch<any>(likedFunction(id, blog));
+  };
+
   return (
     <Fragment>
       {" "}
       <main className="post">
         <img
-          src="/mern.webp"
+          src={blog?.image}
           alt="githum"
           className="w-full rounded-md"
           id="lws-megaThumb"
         />
         <div>
           <h1 className="mt-6 text-2xl post-title" id="lws-singleTitle">
-            MERN stack for Web Development
+            {blog?.title}
           </h1>
           <div className="tags" id="lws-singleTags">
-            <span>#python,</span> <span>#tech,</span> <span>#git</span>
+            {blog?.tags.map((tag) => {
+              return <span>#{tag}, </span>;
+            })}
+            {/* <span>#python,</span> <span>#tech,</span> <span>#git</span> */}
           </div>
           <div className="btn-group">
-            <button className="like-btn" id="lws-singleLinks">
-              <i className="fa-regular fa-thumbs-up"></i> 100
+            <button
+              className="like-btn"
+              id="lws-singleLinks"
+              onClick={() => likeHandle(blog.id, blog)}
+            >
+              <i className="fa-regular fa-thumbs-up"></i> {blog?.likes}
             </button>
             <button className="active save-btn" id="lws-singleSavedBtn">
-              <i className="fa-regular fa-bookmark"></i> Saved
+              {blog?.isSaved ? (
+                <i className="fa-regular fa-bookmark">Saved</i>
+              ) : (
+                <i
+                  className="fa-regular fa-bookmark"
+                  onClick={() => saveHandle(blog.id, blog)}
+                >
+                  Save
+                </i>
+              )}
             </button>
           </div>
           <div className="mt-6">
-            <p>
-              A MERN stack comprises a collection of four frameworks (MongoDB,
-              ExpressJs, ReactJs and NodeJs) used to develop full-stack
-              javascript solutions for rapid, scalable, and secure applications.
-              Each framework serves a different purpose in creating successful
-              web applications. It is an excellent choice for companies looking
-              to develop high-quality responsive applications quickly using just
-              one language.
-            </p>
+            <p>{blog?.description}</p>
           </div>
         </div>
       </main>
