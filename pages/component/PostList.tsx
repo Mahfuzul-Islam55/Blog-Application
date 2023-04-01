@@ -1,6 +1,10 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Post from "./Post";
-import { getAllBlogThunk, likedFunction } from "@/Redux/ThunkAction";
+import {
+  getAllBlogThunk,
+  likedFunction,
+  savedFunction,
+} from "@/Redux/ThunkAction";
 import { useAppDispatch, useAppSelector } from "@/Redux/store";
 import { IInitialState } from "@/Redux/AllType";
 
@@ -55,14 +59,12 @@ const PostList = () => {
   };
 
   const onLikedHandle = (id: number, blog: IInitialState) => {
-    console.log("From handle", blog.likes);
     blog.likes += 1;
-    console.log("From handle", blog.likes);
-
     dispatch<any>(likedFunction(id, blog));
   };
   const onSavedHandle = (id: number, blog: IInitialState) => {
-    console.log(id);
+    blog.isSaved = true;
+    dispatch<any>(savedFunction(id, blog));
   };
   return (
     <Fragment>

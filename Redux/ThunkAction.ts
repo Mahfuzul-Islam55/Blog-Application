@@ -1,7 +1,11 @@
 import { Dispatch } from "react";
-import { IDispatchGetAllBlog, IDispatchLikedBlog } from "./dispatchType";
+import {
+  IDispatchGetAllBlog,
+  IDispatchLikedBlog,
+  IDispatchSavedBlog,
+} from "./dispatchType";
 import { getAllBlog } from "./action";
-import { GET_ALL_BLOG, LIKED_BLOG } from "./actionType";
+import { GET_ALL_BLOG, LIKED_BLOG, SAVED_BLOG } from "./actionType";
 import { IInitialState } from "./AllType";
 
 export const getAllBlogThunk =
@@ -34,6 +38,31 @@ export const likedFunction = (id: number, blog: IInitialState) => {
       console.log(result);
       dispatch({
         type: LIKED_BLOG,
+        payload: {
+          id: id,
+          data: blog,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const savedFunction = (id: number, blog: IInitialState) => {
+  return async (dispatch: Dispatch<IDispatchSavedBlog>) => {
+    try {
+      const response = await fetch(`http://localhost:9000/blogs/${id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(blog),
+      });
+      const result = await response.json();
+      console.log(result);
+      dispatch({
+        type: SAVED_BLOG,
         payload: {
           id: id,
           data: blog,
